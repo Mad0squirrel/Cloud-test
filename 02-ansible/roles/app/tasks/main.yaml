@@ -1,0 +1,19 @@
+- name: Создать рабочую директорию для веб-приложения
+  file:
+    path: "{{ app_home }}"
+    state: directory
+    mode: "0755"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+
+- name: Запустить 3 экземпляра веб-приложения
+  docker_container:
+    name: "host_viewer_{{ item }}"
+    image: "{{ app_image }}"
+    state: started
+    restart_policy: unless-stopped
+    published_ports:
+      - "800{{ item }}:8000"
+    volumes:
+      - "{{ app_home }}:/var/app_home"
+  with_sequence: start=1 end=3

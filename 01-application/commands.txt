@@ -1,0 +1,8 @@
+# Авторизация в Docker Hub
+docker login
+
+# Собрать образ
+docker build -t mad0squirrel/host-viewer:latest .
+
+# Пуш в репозиторий
+docker push mad0squirrel/host-viewer:latest

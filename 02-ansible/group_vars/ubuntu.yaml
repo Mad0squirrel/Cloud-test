@@ -1,0 +1,3 @@
+ansible_user: nevazhno
+app_image: "mad0squirrel/host-viewer:latest"
+app_home: "/home/{{ ansible_user }}/app_home"
